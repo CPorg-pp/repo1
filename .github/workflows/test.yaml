@@ -1,11 +1,11 @@
-name: docker pull
-on: workflow_dispatch
+name: Docker push container at org level (GITHUB_TOKEN)
+on: push
 
 permissions:
  packages: write
  
 env:
- pkg: "docker"
+ pkg: "irssi"
 
 jobs:
  all:
@@ -15,4 +15,8 @@ jobs:
    - name: Login to GitHub container Registry
      run: echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
    - name: Build the Docker image
-     run: docker pull ghcr.io/cppkg/busybbox:l1
+     run: docker pull $pkg:latest
+   - name: Tag the Docker image
+     run: docker tag $pkg:latest ghcr.io/cppkg/$pkg:latest
+   - name: Push the Docker image to the registry
+     run: docker push ghcr.io/cppkg/$pkg:latest
