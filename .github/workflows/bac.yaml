@@ -13,4 +13,4 @@ jobs:
   steps:
    - name: Login to GitHub container Registry
      run: |          
-          curl  -H "Accept: application/vnd.github.v3+json" -H "Authorization: Bearer ${{ secrets.RW_PAT }}" https://api.github.com/orgs/cppkg/packages\?package_type=\container
+          curl  -H "Accept: application/vnd.github.v3+json" -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/orgs/cppkg/packages\?package_type=\container
