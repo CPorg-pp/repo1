@@ -1,6 +1,5 @@
 name: get api
-on: workflow_dispatch
-
+on: push
 permissions:
  packages: write
  
