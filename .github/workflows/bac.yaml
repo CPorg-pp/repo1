@@ -1,0 +1,19 @@
+name: get api
+on: workflow_dispatch
+
+permissions:
+ packages: write
+ 
+env:
+ pkg: "docker"
+
+jobs:
+ all:
+  runs-on: self-hosted
+  
+  steps:
+   - name: Login to GitHub container Registry
+     run: curl \
+         -H "Accept: application/vnd.github+json" \ 
+         -H "Authorization: Bearer  ${{ secrets.GITHUB_TOKEN }}" \
+          https://api.github.com/orgs/ORG/packages
